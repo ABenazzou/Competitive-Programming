@@ -43,6 +43,7 @@ double getDistance(ii s1, ii s2) {
 }
 
 double backtrack(vector<ii>& students, int n, int mask, map<int, double>& memo) {
+	// improvement? Memoize partial states and add them if they are found subsequently
     // If all students are paired (mask has all bits set), return 0 (no more distance to add)
     if (mask == (1 << (2 * n)) - 1) {
         return 0.0;
