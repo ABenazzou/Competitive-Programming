@@ -39,6 +39,7 @@ void solve() {
 	scanf("%d", &n);
 	int prices[n];
 	vi minPrices(n, INF);
+	int minPrice = INF;
 	for (int i = 0; i < n; i ++) {
 		scanf("%d", &prices[i]);
 	}
@@ -57,13 +58,12 @@ void solve() {
 		for (int j = 0; j < k; j ++) {
 			scanf("%d", &possibleTopping);
 			possibleTopping --;
-			minPrices[i] = min(minPrices[i], toppingPrices[possibleTopping] + prices[i]);
+			minPrice = min(minPrice, toppingPrices[possibleTopping] + prices[i]);
 		}
 	}
-	sort(all(minPrices));
 	int X;
 	scanf("%d", &X);
-	int res = max(0, ((X / minPrices[0]) - 1)); // always pick the min, lower bound was for wrong max understanding of problem
+	int res = max(0, (X / minPrice) - 1); // always pick the min, lower bound was for wrong max understanding of problem
 	
 	printf("%d\n", res);
 		
