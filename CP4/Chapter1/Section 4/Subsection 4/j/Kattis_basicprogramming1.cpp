@@ -1,9 +1,10 @@
+
 /*
- * Created: 2025-01-11
  * Author: @adnanebenazzou
  */
 
 #include <bits/stdc++.h>
+#include <numeric>
 
 using namespace std;
 
@@ -34,20 +35,82 @@ const ll MOD = 1e9 + 7;
 
 
 void solve() {
-	string s;
-	getline(cin, s);
-	stack<int> downHills;
-	int res = 0;
-	int n = s.size();
-	for (int i = 0; i < n; i ++) {
-		if (s[i] == '\\') {
-			downHills.push(i);// this is a start of a potential pit
-		} else if (s[i] == '/' && !downHills.empty()) {
-			res += i - downHills.top();
-			downHills.pop();
-		}
+	int n, t;
+	scanf("%d %d", &n, &t);
+
+	ll a[n];
+	for(int i = 0; i < n; i ++) {
+		scanf("%lld", &a[i]);
 	}
-	cout << res << '\n';
+
+	switch(t) {
+		case 1 :
+			printf("%d\n", 7);
+			break;
+		case 2 :
+			if (a[0] == a[1]) {
+				printf("Equal\n");
+			}
+			else {
+				(a[0] > a[1]) ? printf("Bigger\n") : printf("Smaller\n");
+			}
+			break;
+		case 3 :
+		{
+			sort(a, a + 3);
+			printf("%lld\n", a[1]);
+			break;
+		}
+		case 4 :
+		{
+			
+			ll res = accumulate(a, a + n, 0L);
+			printf("%lld\n", res);
+			break;
+		}
+		case 5 :
+			{
+				ll tmp = 0;
+				for (int i = 0; i < n; i ++) {
+					if ( a[i] % 2 == 0) {
+						tmp += a[i];
+					}
+				}
+				printf("%lld\n", tmp);
+				break;
+			}
+		case 6 :
+			{
+
+				string curr;
+				for (int i = 0; i < n; i ++) {
+					int ascii = (a[i] % 26);
+					curr += char(int('a') + ascii);
+					dbg(char(int('a') + 25));
+				}
+				printf("%s\n", curr.c_str());
+				break;
+			}
+		case 7 :
+			{
+				ll idx = 0;
+				set<ll> visited;
+				while (idx < n && idx != n - 1 && (visited.find(idx) == visited.end())) {
+					visited.insert(idx);
+					idx = a[idx];
+
+				}
+				if (idx == n - 1) {
+					printf("Done\n");
+				} else if (idx >= n) {
+					printf("Out\n");
+				} else {
+					printf("Cyclic\n");
+				}
+				break;
+			}
+	}
+
 }
 
 
@@ -56,8 +119,7 @@ int main() {
     cin.tie(0); cout.tie(0);
     
     int tc = 1;
-    cin >> tc;
-    cin.ignore();
+    //cin >> tc;
     //scanf("%d", &tc);
     
     for (int i = 1; i <= tc; i ++ ) {
@@ -67,3 +129,4 @@ int main() {
 
 	return 0;
 }
+
