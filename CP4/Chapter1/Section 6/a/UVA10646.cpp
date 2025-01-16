@@ -39,7 +39,8 @@ void solve(int tc) {
 	for(int i = 0; i < 52; i ++) {
 		cin >> deck[i];
 	}
-	char tmp;
+	cout << "Case " << tc << ": " << deck[32] << '\n';
+/*	char tmp;
 	int Y = 0, value, topCard = 24;
 	for (int i = 0; i < 3; i ++) {
 		tmp = deck[topCard][0];
@@ -51,14 +52,14 @@ void solve(int tc) {
 		Y += value;
 		topCard -= 11 - value; // 10 cards + current card - x
 	}
-	cout << "Case " << tc << ": ";
-	if (Y - 1 <= topCard) {
+	if (Y - 1 <= topCard) { // sum xi - 1 <= 24 - sum xi - 11 * 3 - > -1 <= 24 - 33 impossible
 		cout << deck[Y - 1] << '\n';
 	} else {
-		int idx = 23 + Y -topCard;
+		int idx = 23 + Y - topCard; // 23 + sum xi - 24 - sum xi + 11 * 3 -> 32
 		cout << deck[idx] << '\n';
 	}
 	dbg(Y, topCard);
+	*/
 }
 
 
