@@ -38,8 +38,8 @@ void solve() {
 	getline(cin, dummy);
 	deque<char> pileJane, pileJohn;
 	string jane, john;// top to bottom
-	cin >> jane >> john;
-	cin.ignore();
+	getline(cin, jane);
+	getline(cin, john);
 	dbg(jane, john);
 	// start with same num cards < 50 each
 	// time to call Snap -> random determins who calls first 0 = Jane, otherwise John
@@ -128,7 +128,7 @@ void solve() {
 		} 
 
 	}
-	cout << "Keeps going and going ...\n\n" << '\n';
+	cout << "Keeps going and going ...\n";
 }
 
 
@@ -142,6 +142,9 @@ int main() {
     
     cin.ignore();
     for (int i = 1; i <= tc; i ++ ) {
+	    	if (i != 1) {
+			cout << '\n'; // blank line between each output
+		}
 		dbg("Test Case: ", i);
 		solve();
 	}
