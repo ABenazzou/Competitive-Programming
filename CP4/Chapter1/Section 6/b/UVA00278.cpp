@@ -43,8 +43,7 @@ void solve() {
 			break;
 		case 'k':
 			{
-				int tmp = max(m, n) / 2;
-				cout << (tmp * min(m, n)) << '\n';
+				cout << (((m + 1) / 2) * ( (n + 1) / 2) + (m/2) * (n/2)) << '\n';
 				break;
 			}
 		case 'Q':
