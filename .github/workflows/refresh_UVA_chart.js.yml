@@ -76,9 +76,9 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add scripts/UVA_donut_chart.svg
-        git add scripts/Codeforces_donut_chart.svg
-        git add scripts/Kattis_donut_chart.svg
+        git add scripts/out/UVA_donut_chart.svg
+        git add scripts/out/Codeforces_donut_chart.svg
+        git add scripts/out/Kattis_donut_chart.svg
         git diff --cached --quiet || (git commit -m "Updated statistics" && git push)
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
