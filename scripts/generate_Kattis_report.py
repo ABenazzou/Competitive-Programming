@@ -31,7 +31,7 @@ def generate_donut_chart(accepted, rejected, output_file="Kattis_donut_chart.svg
     total_text.set_color(total_color)
     
     plt.axis('equal') 
-    plt.savefig(output_file, format="svg", bbox_inches="tight")
+    plt.savefig(output_file, format="svg", bbox_inches="tight", transparent=True)
     plt.close()
     
     return output_file
