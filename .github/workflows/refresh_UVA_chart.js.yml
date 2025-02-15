@@ -14,6 +14,7 @@ jobs:
 
     strategy:
       matrix:
+        python-version: [3.9]
         node-version: [18.x]
 
     steps:
@@ -44,11 +45,27 @@ jobs:
       run: node generate_UVA_report.cjs
       working-directory: scripts
 
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  
+      working-directory: scripts
+
+    - name: Generate Kattis chart 
+      run: python generate_Kattis_report.py
+      working-directory: scripts
+
     - name: Commit and push changes
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add scripts/UVA_donut_chart.svg
-        git diff --cached --quiet || (git commit -m "Updated UVA donut chart" && git push)
+        git add scripts/Kattis_donut_chart.svg
+        git diff --cached --quiet || (git commit -m "Updated statistics" && git push)
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

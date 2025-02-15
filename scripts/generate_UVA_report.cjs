@@ -27,6 +27,8 @@ async function generateDonutChart(data) {
     const pie = d3.pie().value(d => d.count);
     const arc = d3.arc().innerRadius(radius * 0.5).outerRadius(radius);
     const color = d3.scaleOrdinal(["green", "red"]);
+    
+    const totalColor = data.accepted >= data.rejected ? "Accepted" : "Rejected";
 
     const dataReady = pie([
         { category: "Accepted", count: data.accepted },
@@ -47,8 +49,15 @@ async function generateDonutChart(data) {
         .attr("transform", d => `translate(${arc.centroid(d)})`)
         .attr("text-anchor", "middle")
         .attr("font-size", "16px")
-        .attr("fill", "white") 
+        .attr("fill", "white")
         .text(d => d.data.count);
+
+    g.append("text")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "20px")
+        .attr("font-weight", "bold")
+        .attr("fill", color(totalColor))
+        .text(`Total: ${data.total}`);
 
     const legend = svg.append("g").attr("transform", `translate(${width / 2 - 50}, ${height + 20})`);
     const labels = ["Accepted", "Rejected"];
@@ -79,5 +88,5 @@ async function generateDonutChart(data) {
     if (!data) return;
 
     const svgFile = await generateDonutChart(data);
-    console.log(`Saved: ${svgFile}`)
+    console.log(`Saved: ${svgFile}`);
 })();
