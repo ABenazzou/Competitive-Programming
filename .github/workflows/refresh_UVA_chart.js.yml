@@ -59,6 +59,9 @@ jobs:
     - name: Generate Kattis chart 
       run: python generate_Kattis_report.py
       working-directory: scripts
+      env:
+        KATTIS_EMAIL: ${{ secrets.KATTIS_EMAIL }}
+        KATTIS_PASSWORD: ${{ secrets.KATTIS_PASSWORD }}
 
     - name: Commit and push changes
       run: |
