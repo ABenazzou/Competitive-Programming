@@ -3,6 +3,7 @@
 !README.MD
 !*/
 !requirements.txt
+!**.js
 !**.cjs
 !**.svg
 !**.java
