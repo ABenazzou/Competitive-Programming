@@ -45,6 +45,10 @@ jobs:
       run: node generate_UVA_report.cjs
       working-directory: scripts
 
+    - name: Generate Codeforces chart
+      run: node generate_Codeforces_report.cjs
+      working-directory: scripts
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -62,12 +66,13 @@ jobs:
       env:
         KATTIS_EMAIL: ${{ secrets.KATTIS_EMAIL }}
         KATTIS_PASSWORD: ${{ secrets.KATTIS_PASSWORD }}
-
+    
     - name: Commit and push changes
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add scripts/UVA_donut_chart.svg
+        git add scripts/Codeforces_donut_chart.svg
         git add scripts/Kattis_donut_chart.svg
         git diff --cached --quiet || (git commit -m "Updated statistics" && git push)
     env:
