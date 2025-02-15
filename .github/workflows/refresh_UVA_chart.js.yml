@@ -21,15 +21,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: npm ci
-      working-directory: scripts
-      
     - name: Install NordVPN
       run: |
           sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
@@ -40,14 +31,6 @@ jobs:
         sudo nordvpn connect
       env:
         TOKEN: ${{ secrets.TOKEN }}
-  
-    - name: Generate UVA chart
-      run: node generate_UVA_report.cjs
-      working-directory: scripts
-
-    - name: Generate Codeforces chart
-      run: node generate_Codeforces_report.cjs
-      working-directory: scripts
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
@@ -60,13 +43,35 @@ jobs:
         pip install -r requirements.txt  
       working-directory: scripts
 
-    - name: Generate Kattis chart 
-      run: python generate_Kattis_report.py
+    - name: Retrieve Kattis Data 
+      run: python get_Kattis_data.py
       working-directory: scripts
       env:
         KATTIS_EMAIL: ${{ secrets.KATTIS_EMAIL }}
         KATTIS_PASSWORD: ${{ secrets.KATTIS_PASSWORD }}
-    
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm ci
+      working-directory: scripts
+      
+      
+    - name: Generate UVA chart
+      run: node generate_UVA_report.cjs
+      working-directory: scripts
+
+    - name: Generate Codeforces chart
+      run: node generate_Codeforces_report.cjs
+      working-directory: scripts
+
+    - name: Generate Kattis chart
+      run: node generate_Kattis_report.cjs
+      working-directory: scripts
+
     - name: Commit and push changes
       run: |
         git config --global user.name "github-actions"
