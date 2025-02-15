@@ -40,7 +40,7 @@ jobs:
     - name: Quick Connect to VPN
       run: |
         sudo nordvpn login --token $TOKEN
-        sudo nordvpn --connect
+        sudo nordvpn connect
       env:
         TOKEN: ${{ secrets.TOKEN }}
   
