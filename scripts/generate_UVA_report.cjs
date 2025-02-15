@@ -79,12 +79,5 @@ async function generateDonutChart(data) {
     if (!data) return;
 
     const svgFile = await generateDonutChart(data);
-<<<<<<< HEAD
-<<<<<<< HEAD
     console.log(`Saved: ${svgFile}`)
-=======
->>>>>>> f639b6e (Update and rename generate_UVA_report.mjs to generate_UVA_report.cjs)
-=======
-    console.log(`Saved: ${svgFile}`)
->>>>>>> a6fdada (Update generate_UVA_report.cjs)
 })();

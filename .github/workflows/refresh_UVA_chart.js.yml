@@ -29,14 +29,10 @@ jobs:
       run: npm ci
       working-directory: scripts
       
-<<<<<<< HEAD
-<<<<<<< HEAD
     - name: Install NordVPN
       run: |
           sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     - name: Quick Connect to VPN
       run: |
         sudo nordvpn login --token $TOKEN
@@ -44,35 +40,6 @@ jobs:
       env:
         TOKEN: ${{ secrets.TOKEN }}
   
-=======
-    - name: Test curl with GET request
-      run: |
-        curl -v https://vjudge.net/user/solveDetail/adnaneben \
-          -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" \
-          -H "Accept-Language: en-US,en;q=0.9" \
-          -H "Accept-Encoding: gzip, deflate" \
-          -H "Connection: keep-alive"
-
->>>>>>> e8eee8a (Update refresh_UVA_chart.js.yml)
-=======
-    - name: Install OpenVPN
-=======
-    - name: Install NordVPN
->>>>>>> d24e551 (Update refresh_UVA_chart.js.yml)
-      run: |
-          sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
-
-    - name: Connect to VPN
-=======
-    - name: Quick Connect to VPN
->>>>>>> b4a8ae3 (Update refresh_UVA_chart.js.yml)
-      run: |
-        sudo nordvpn login --token $TOKEN
-        sudo nordvpn --connect
-      env:
-        TOKEN: ${{ secrets.TOKEN }}
-  
->>>>>>> af07b20 (Update refresh_UVA_chart.js.yml)
     - name: Generate UVA chart
       run: node generate_UVA_report.cjs
       working-directory: scripts

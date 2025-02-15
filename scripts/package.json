@@ -2,22 +2,14 @@
     "name": "vjudge-chart-updater",
     "version": "1.0.0",
     "description": "Fetch UVA data from Vjudge and generate a donut chart",
-    "main": "generate_UVA_report.mjs",
+    "main": "generate_UVA_report.cjs",
     "scripts": {
-      "start": "generate_UVA_report.mjs"
+      "start": "generate_UVA_report.cjs"
     },
     "dependencies": {
       "vjudge-api": "^1.0.0",
       "d3-node": "^2.1.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
       "fs-extra": "^11.2.0"
-=======
-      "fs-extra": "^11.2.0",
->>>>>>> e67b7d4 (Update package.json)
-=======
-      "fs-extra": "^11.2.0"
->>>>>>> 7e14bc8 (Create package.json)
     },
     "engines": {
       "node": ">=18"
