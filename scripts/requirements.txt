@@ -1,2 +1,2 @@
 autokattis==2.1.1
-matplotlib==3.10.0
+matplotlib==3.9.4
